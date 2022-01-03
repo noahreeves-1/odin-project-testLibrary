@@ -1,0 +1,36 @@
+.header {
+    height: 50px;
+    margin: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    background-color: lightgrey;
+}
+
+.popUpWindow {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 25%;
+    left: 25%;
+    width: 200px;
+    height: 250px;
+    background-color: white;
+    /* background-color: rgba(0,0,0, 0.4); */
+}
+
+.books {
+    display: flex;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.cards {
+    background-color: aliceblue;
+    height: 200px;
+    width: 150px;
+    border-style: solid;
+    border-color: blue;
+    margin: 25px;
+}
