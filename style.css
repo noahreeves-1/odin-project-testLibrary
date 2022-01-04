@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(255, 255, 255);
+}
+
 .header {
     height: 100px;
     margin: 0px;
@@ -13,12 +17,16 @@
 .buttonSection {
     display: flex;
     justify-content: center;
+
 }
 
 .addBookBtn {
     padding: 20px;
-    margin: 30px;
-    justify-content: center;
+    margin-top: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    background-color: rgb(113, 220, 235);
+    border-style: none;
 }
 
 .popUpWindow {
@@ -28,7 +36,7 @@
     top: 50%;
     left: 50%;
     width: 200px;
-    height: 250px;
+    height: 255px;
     margin-left: -110px;
     margin-top: -135px;
     background-color: lightcyan;
@@ -43,15 +51,42 @@
 
 .cards {
     margin: 25px;
-    padding: 20px;
-    background-color: aliceblue;
+    padding: 15px;
+    background-color: rgb(240, 240, 240);
     height: 200px;
     width: 150px;
-    border-style: solid;
-    border-color: blue;
+    border-style: none;
+    display: flex;
+    flex-direction: column;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
 }
 
-.switchButton {
-    border-style: solid;
-    border-color: black;
+.bookInfo {
+    /* font-weight: bold; */
+    margin: 4px 0px;
+    text-align: center;
+    flex:1;
+}
+
+.bookTitle {
+    text-align: left;
+    font-weight: 600;
+}
+
+.bookAuthor {
+    text-align: left;
+    font-style: italic;
+}
+
+.readBtn {
+    margin: 4px 0px;
+    text-align: center;
+}
+
+.removeBtn {
+    margin: 4px 0px;
+    text-align: center;
+    background-color: rgb(250, 146, 146);
 }

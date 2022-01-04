@@ -41,23 +41,23 @@ function displayBooks () {
         let bookGenre = myLibrary[i].genre;
         let bookRead = myLibrary[i].read;
         let newLine = document.createElement('div');
-            newLine.className = 'cards';
+            newLine.classList.add('cards');
             newLine.dataset.index = i;
             booksDisplay.appendChild(newLine);
         let titleDiv = document.createElement('div');
-            titleDiv.className = 'bookTitle';
+            titleDiv.classList.add('bookTitle', 'bookInfo');
             newLine.appendChild(titleDiv);
             titleDiv.append(bookTitle);
         let authorDiv = document.createElement('div');
-            authorDiv.className = 'bookAuthor';
+            authorDiv.classList.add('bookAuthor', 'bookInfo');
             newLine.appendChild(authorDiv);
             authorDiv.append(bookAuthor);
         let yearDiv = document.createElement('div');
-            yearDiv.className = 'bookYear';
+            yearDiv.classList.add('bookYear', 'bookInfo');
             newLine.appendChild(yearDiv);
             yearDiv.append(bookYear);
         let genreDiv = document.createElement('div');
-            genreDiv.className = 'bookGenre';
+            genreDiv.classList.add('bookGenre', 'bookInfo');
             newLine.appendChild(genreDiv);
             genreDiv.append(bookGenre);
         let readBtnLine = document.createElement('div');
@@ -70,7 +70,7 @@ function displayBooks () {
             removeBtnLine.textContent = "Remove";
         if (bookRead == true) {
             readBtnLine.textContent = 'Read';
-            readBtnLine.style.backgroundColor = 'lightblue';
+            readBtnLine.style.backgroundColor = 'lightgreen';
         } else {
             readBtnLine.textContent = "Haven't read";
             readBtnLine.style.backgroundColor = 'pink';
@@ -93,6 +93,21 @@ function displayBooks () {
             displayBooks();
         })
     });
+
+    // READ / DIDN'T READ button
+    const readBtn = document.querySelectorAll('.readBtn');
+
+    readBtn.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.textContent == "Read") {
+                button.style.backgroundColor = "pink";
+                button.textContent = "Haven't read";
+            } else {
+                button.style.backgroundColor = 'lightgreen';
+                button.textContent = "Read";
+            }
+        })
+    })
 
 }
 
@@ -137,18 +152,3 @@ submitBtn.addEventListener('click', () => {
 
     hideDiv();
 });
-
-// READ / DIDN'T READ button
-const readBtn = document.querySelectorAll('.readBtn');
-
-readBtn.forEach((button) => {
-    button.addEventListener('click', () => {
-        if (button.textContent == "Read") {
-            button.style.backgroundColor = "pink";
-            button.textContent = "Haven't read";
-        } else {
-            button.style.backgroundColor = 'lightblue';
-            button.textContent = "Read";
-        }
-    })
-})
