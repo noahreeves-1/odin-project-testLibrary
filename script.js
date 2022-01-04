@@ -11,23 +11,27 @@ const titleInput = document.getElementById('title');
 const authorInput = document.getElementById('author');
 const yearInput = document.getElementById('year');
 const genreInput = document.getElementById('genre');
+const readInput = document.getElementById('askRead');
 
-// DEFINE FUNCTIONS
+// DEFINE FUNCTIONS //
 
-function Book(title, author, year, genre) {
+// FUNCTION create book
+function Book(title, author, year, genre, read) {
   // the constructor...
   this.title = title;
   this.author = author;
   this.year = year;
   this.genre = genre;
+  this.read = read;
 };
 
+// FUNCTION add book to library
 function addBookToLibrary(book) {
   // do stuff here
   myLibrary.push(book);
 };
 
-// loop through array and show on display HTML
+// FUNCTION loop through array and display books in library as cards
 function displayBooks () {
     booksDisplay.textContent = '';
     for (let i = 0; i < myLibrary.length; i++) {
@@ -35,27 +39,61 @@ function displayBooks () {
         let bookAuthor = myLibrary[i].author;
         let bookYear = myLibrary[i].year;
         let bookGenre = myLibrary[i].genre;
+        let bookRead = myLibrary[i].read;
         let newLine = document.createElement('div');
             newLine.className = 'cards';
+            newLine.dataset.index = i;
             booksDisplay.appendChild(newLine);
         let titleDiv = document.createElement('div');
             titleDiv.className = 'bookTitle';
             newLine.appendChild(titleDiv);
+            titleDiv.append(bookTitle);
         let authorDiv = document.createElement('div');
             authorDiv.className = 'bookAuthor';
             newLine.appendChild(authorDiv);
+            authorDiv.append(bookAuthor);
         let yearDiv = document.createElement('div');
             yearDiv.className = 'bookYear';
             newLine.appendChild(yearDiv);
+            yearDiv.append(bookYear);
         let genreDiv = document.createElement('div');
             genreDiv.className = 'bookGenre';
             newLine.appendChild(genreDiv);
-            
-            titleDiv.append(bookTitle);
-            authorDiv.append(bookAuthor);
-            yearDiv.append(bookYear);
             genreDiv.append(bookGenre);
+        let readBtnLine = document.createElement('div');
+            readBtnLine.className = 'readBtn';
+            newLine.appendChild(readBtnLine);
+            readBtnLine.append(bookRead);
+        let removeBtnLine = document.createElement('div');
+            removeBtnLine.className = 'removeBtn';
+            newLine.appendChild(removeBtnLine);
+            removeBtnLine.textContent = "Remove";
+        if (bookRead == true) {
+            readBtnLine.textContent = 'Read';
+            readBtnLine.style.backgroundColor = 'lightblue';
+        } else {
+            readBtnLine.textContent = "Haven't read";
+            readBtnLine.style.backgroundColor = 'pink';
+        }
     }
+    // REMOVE card when clicked
+    const removeBtn = document.querySelectorAll('.removeBtn');
+
+    removeBtn.forEach((button) => {
+        
+        button.addEventListener('click', e => {
+            console.log('removeBtn was clicked');
+
+            let dataIndex = button.parentNode.dataset['index'];
+            myLibrary.splice(dataIndex,1);
+
+            console.log(myLibrary);
+            console.log(myLibrary.length);
+
+            displayBooks();
+        })
+    });
+
 }
 
 function divShow() {
@@ -67,9 +105,9 @@ function hideDiv() {
 }
 
 // create initial array with 3 books
-const harryPotter = new Book("Harry Potter and the Sorcerer's Stone", 'J. K. Rowling', '1997', 'Fiction');
-const starWars = new Book('Lord of the Rings: Return of the King', 'J. R. R. Tolkien', '1954', 'Fiction');
-const twilight = new Book('Kite Runner', 'Khaled Hosseini', '2003', 'Fiction');
+const harryPotter = new Book("Harry Potter and the Sorcerer's Stone", 'J. K. Rowling', '1997', 'Fiction', true);
+const starWars = new Book('Lord of the Rings: Return of the King', 'J. R. R. Tolkien', '1954', 'Fiction', false);
+const twilight = new Book('Kite Runner', 'Khaled Hosseini', '2003', 'Fiction', false);
 
 addBookToLibrary(harryPotter);
 addBookToLibrary(starWars);
@@ -77,18 +115,18 @@ addBookToLibrary(twilight);
 
 console.log(myLibrary);
 
-// show pop up window when add Book button is clicked
-addBookBtn.addEventListener('click', e => {
-    divShow();
-})
-
 displayBooks();
 
-// pop up window SUBMIT button logic
+// SHOW pop up window when add Book button is clicked
+addBookBtn.addEventListener('click', e => {
+    divShow();
+});
+
+// SUBMIT pop up information when clicked
 submitBtn.addEventListener('click', () => {
 
     const currentBook = new Book(titleInput.value, authorInput.value, 
-                                    yearInput.value, genreInput.value); // creates new book object
+                                    yearInput.value, genreInput.value, readInput.value); // creates new book object
     addBookToLibrary(currentBook); // adds book to library
     displayBooks();
 
@@ -98,4 +136,19 @@ submitBtn.addEventListener('click', () => {
     genreInput.value = "";
 
     hideDiv();
+});
+
+// READ / DIDN'T READ button
+const readBtn = document.querySelectorAll('.readBtn');
+
+readBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        if (button.textContent == "Read") {
+            button.style.backgroundColor = "pink";
+            button.textContent = "Haven't read";
+        } else {
+            button.style.backgroundColor = 'lightblue';
+            button.textContent = "Read";
+        }
+    })
 })

@@ -1,36 +1,57 @@
 .header {
-    height: 50px;
+    height: 100px;
     margin: 0px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    font-size: 50px;
     text-align: center;
+    line-height: 100px;
     vertical-align: middle;
-    line-height: 50px;
     background-color: lightgrey;
+}
+
+.buttonSection {
+    display: flex;
+    justify-content: center;
+}
+
+.addBookBtn {
+    padding: 20px;
+    margin: 30px;
+    justify-content: center;
 }
 
 .popUpWindow {
     display: none;
     position: fixed;
     z-index: 1;
-    top: 25%;
-    left: 25%;
+    top: 50%;
+    left: 50%;
     width: 200px;
     height: 250px;
-    background-color: white;
+    margin-left: -110px;
+    margin-top: -135px;
+    background-color: lightcyan;
+    padding: 20px;
     /* background-color: rgba(0,0,0, 0.4); */
 }
 
 .books {
     display: flex;
-    margin-top: 50px;
-    margin-left: 50px;
+    flex-wrap: wrap;
 }
 
 .cards {
+    margin: 25px;
+    padding: 20px;
     background-color: aliceblue;
     height: 200px;
     width: 150px;
     border-style: solid;
     border-color: blue;
-    margin: 25px;
+}
+
+.switchButton {
+    border-style: solid;
+    border-color: black;
 }
