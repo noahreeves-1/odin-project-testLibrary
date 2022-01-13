@@ -15,21 +15,19 @@ const readInput = document.getElementById('askRead');
 
 // DEFINE FUNCTIONS //
 
-// FUNCTION create book
-function Book(title, author, year, genre, read) {
-  // the constructor...
-  this.title = title;
-  this.author = author;
-  this.year = year;
-  this.genre = genre;
-  this.read = read;
-};
+class Book {
+    constructor(title, author, year, genre, read) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.genre = genre;
+        this.read = read;
+    }
 
-// FUNCTION add book to library
-function addBookToLibrary(book) {
-  // do stuff here
-  myLibrary.push(book);
-};
+    addBookToLibrary () {
+        myLibrary.push(this)
+    }
+}
 
 // FUNCTION loop through array and display books in library as cards
 function displayBooks () {
@@ -124,9 +122,9 @@ const harryPotter = new Book("Harry Potter and the Sorcerer's Stone", 'J. K. Row
 const starWars = new Book('Lord of the Rings: Return of the King', 'J. R. R. Tolkien', '1954', 'Fiction', false);
 const twilight = new Book('Kite Runner', 'Khaled Hosseini', '2003', 'Fiction', false);
 
-addBookToLibrary(harryPotter);
-addBookToLibrary(starWars);
-addBookToLibrary(twilight);
+harryPotter.addBookToLibrary();
+starWars.addBookToLibrary();
+twilight.addBookToLibrary();
 
 console.log(myLibrary);
 
@@ -142,7 +140,7 @@ submitBtn.addEventListener('click', () => {
 
     const currentBook = new Book(titleInput.value, authorInput.value, 
                                     yearInput.value, genreInput.value, readInput.value); // creates new book object
-    addBookToLibrary(currentBook); // adds book to library
+    currentBook.addBookToLibrary(); // adds book to library
     displayBooks();
 
     titleInput.value = "";
